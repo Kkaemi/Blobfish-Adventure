@@ -19,7 +19,7 @@ public class LevelSelect : MonoBehaviour
 
     private GameManager gameManager;
 
-    // private AudioManager audioManager;
+    private AudioManager audioManager;
 
     private int currentPage;
     private bool isFirstPage;
@@ -28,7 +28,7 @@ public class LevelSelect : MonoBehaviour
     private void Awake()
     {
         gameManager = FindObjectOfType<GameManager>();
-        // audioManager = FindObjectOfType<AudioManager>();
+        audioManager = FindObjectOfType<AudioManager>();
     }
 
     private void Start()
@@ -55,14 +55,14 @@ public class LevelSelect : MonoBehaviour
 
     public void MoveNextPage()
     {
-        // rightButton.GetComponent<AudioSource>().mute = audioManager.GetSFXState();
+        rightButton.GetComponent<AudioSource>().mute = !audioManager.GetSFXState();
         currentPage++;
         DrawLevels();
     }
 
     public void MovePreviousPage()
     {
-        // leftButton.GetComponent<AudioSource>().mute = audioManager.GetSFXState();
+        leftButton.GetComponent<AudioSource>().mute = !audioManager.GetSFXState();
         currentPage--;
         DrawLevels();
     }
