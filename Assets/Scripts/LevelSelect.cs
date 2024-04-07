@@ -21,23 +21,13 @@ public class LevelSelect : MonoBehaviour
 
     private readonly int pageSize = 10;
 
-    private GameManager gameManager;
-
-    private AudioManager audioManager;
-
     private int currentPage;
     private bool isFirstPage;
     private bool isLastPage;
 
-    private void Awake()
-    {
-        gameManager = FindObjectOfType<GameManager>();
-        audioManager = FindObjectOfType<AudioManager>();
-    }
-
     private void Start()
     {
-        int clearStageCount = gameManager.GetClearStageCount();
+        int clearStageCount = GameManager.Instance.GetClearStageCount();
         currentPage = clearStageCount / pageSize;
         DrawLevels();
     }
@@ -45,7 +35,7 @@ public class LevelSelect : MonoBehaviour
     private void DrawLevels()
     {
         isFirstPage = currentPage == 0;
-        isLastPage = currentPage == ((gameManager.GetTotalLevelCount() / pageSize) - 1);
+        isLastPage = currentPage == ((GameManager.Instance.GetTotalLevelCount() / pageSize) - 1);
 
         leftButton.interactable = !isFirstPage;
         rightButton.interactable = !isLastPage;
@@ -59,21 +49,21 @@ public class LevelSelect : MonoBehaviour
 
     public void MoveNextPage()
     {
-        rightButton.GetComponent<AudioSource>().mute = !audioManager.GetSFXState();
+        rightButton.GetComponent<AudioSource>().mute = !AudioManager.Instance.GetSFXState();
         currentPage++;
         DrawLevels();
     }
 
     public void MovePreviousPage()
     {
-        leftButton.GetComponent<AudioSource>().mute = !audioManager.GetSFXState();
+        leftButton.GetComponent<AudioSource>().mute = !AudioManager.Instance.GetSFXState();
         currentPage--;
         DrawLevels();
     }
 
     public void MoveMainTitleScene()
     {
-        GoToMainButton.GetComponent<AudioSource>().mute = !audioManager.GetSFXState();
+        GoToMainButton.GetComponent<AudioSource>().mute = !AudioManager.Instance.GetSFXState();
         SceneManager.LoadScene(0);
     }
 }
