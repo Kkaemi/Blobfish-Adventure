@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class LevelSelect : MonoBehaviour
@@ -14,6 +15,9 @@ public class LevelSelect : MonoBehaviour
 
     [SerializeField]
     private List<Button> levelButtons = new();
+
+    [SerializeField]
+    private Button GoToMainButton;
 
     private readonly int pageSize = 10;
 
@@ -65,5 +69,11 @@ public class LevelSelect : MonoBehaviour
         leftButton.GetComponent<AudioSource>().mute = !audioManager.GetSFXState();
         currentPage--;
         DrawLevels();
+    }
+
+    public void MoveMainTitleScene()
+    {
+        GoToMainButton.GetComponent<AudioSource>().mute = !audioManager.GetSFXState();
+        SceneManager.LoadScene(0);
     }
 }

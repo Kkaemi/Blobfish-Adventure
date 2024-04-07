@@ -2,16 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AudioManager : MonoBehaviour
+public class AudioManager : SingletonBehaviour<AudioManager>
 {
     private AudioSource audioSource;
 
+    [SerializeField]
     private bool isPlayingMusic = true;
+
+    [SerializeField]
     private bool isPlayingSFX = true;
 
-    private void Awake()
+    private new void Awake()
     {
-        DontDestroyOnLoad(this);
+        base.Awake();
         audioSource = GetComponent<AudioSource>();
     }
 
@@ -20,7 +23,7 @@ public class AudioManager : MonoBehaviour
         PlayMusic();
     }
 
-    void PlayMusic()
+    public void PlayMusic()
     {
         if (isPlayingMusic)
         {
@@ -32,17 +35,6 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void ToggleMusicState()
-    {
-        isPlayingMusic = !isPlayingMusic;
-        PlayMusic();
-    }
-
-    public void ToggleSFXState()
-    {
-        isPlayingSFX = !isPlayingSFX;
-    }
-
     public bool GetMusicState()
     {
         return isPlayingMusic;
@@ -51,5 +43,15 @@ public class AudioManager : MonoBehaviour
     public bool GetSFXState()
     {
         return isPlayingSFX;
+    }
+
+    public void SetMusicState(bool value)
+    {
+        isPlayingMusic = value;
+    }
+
+    public void SetSFXState(bool value)
+    {
+        isPlayingSFX = value;
     }
 }
