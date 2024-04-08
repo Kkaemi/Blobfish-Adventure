@@ -1227,9 +1227,101 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 31231371739930693, guid: f6efcaf4362834b88afe6b32dd6860b3, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 303194819945473197, guid: f6efcaf4362834b88afe6b32dd6860b3, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 315055712186073862, guid: f6efcaf4362834b88afe6b32dd6860b3, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 519340636109998724, guid: f6efcaf4362834b88afe6b32dd6860b3, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1036320488150313963, guid: f6efcaf4362834b88afe6b32dd6860b3, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1662894920835088956, guid: f6efcaf4362834b88afe6b32dd6860b3, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1770138195680989634, guid: f6efcaf4362834b88afe6b32dd6860b3, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2261996220978287945, guid: f6efcaf4362834b88afe6b32dd6860b3, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2371008388249745353, guid: f6efcaf4362834b88afe6b32dd6860b3, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2499038968849070142, guid: f6efcaf4362834b88afe6b32dd6860b3, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3145041151202042690, guid: f6efcaf4362834b88afe6b32dd6860b3, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 3285210781750851976, guid: f6efcaf4362834b88afe6b32dd6860b3, type: 3}
       propertyPath: m_Name
       value: In Game Background
+      objectReference: {fileID: 0}
+    - target: {fileID: 3285210781750851976, guid: f6efcaf4362834b88afe6b32dd6860b3, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3947928334826897152, guid: f6efcaf4362834b88afe6b32dd6860b3, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3982883326245349145, guid: f6efcaf4362834b88afe6b32dd6860b3, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4250501004606063258, guid: f6efcaf4362834b88afe6b32dd6860b3, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4730325066433249452, guid: f6efcaf4362834b88afe6b32dd6860b3, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5039702932229383558, guid: f6efcaf4362834b88afe6b32dd6860b3, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5201555430772650330, guid: f6efcaf4362834b88afe6b32dd6860b3, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5695375003878659848, guid: f6efcaf4362834b88afe6b32dd6860b3, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5712724653842005720, guid: f6efcaf4362834b88afe6b32dd6860b3, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6158497336989452992, guid: f6efcaf4362834b88afe6b32dd6860b3, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6814855938696659866, guid: f6efcaf4362834b88afe6b32dd6860b3, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7102062849313683898, guid: f6efcaf4362834b88afe6b32dd6860b3, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7614097763141937268, guid: f6efcaf4362834b88afe6b32dd6860b3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1271,6 +1363,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7648609430119480559, guid: f6efcaf4362834b88afe6b32dd6860b3, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7841240279050208736, guid: f6efcaf4362834b88afe6b32dd6860b3, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7918904317578913652, guid: f6efcaf4362834b88afe6b32dd6860b3, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8540226111633052525, guid: f6efcaf4362834b88afe6b32dd6860b3, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8577951046004608600, guid: f6efcaf4362834b88afe6b32dd6860b3, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8794020574310468380, guid: f6efcaf4362834b88afe6b32dd6860b3, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1285,7 +1401,7 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1111252928069112674, guid: cbe1153ab9658421e959393618bbfa9d, type: 3}
-      propertyPath: m_GravityScale
+      propertyPath: m_Interpolate
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4013458186418527347, guid: cbe1153ab9658421e959393618bbfa9d, type: 3}
