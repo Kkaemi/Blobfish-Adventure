@@ -14,27 +14,38 @@ public class Setting : MonoBehaviour
 
     private Animator animator;
 
-    private AudioManager audioManager;
-
     private bool sfxState;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
-        audioManager = FindObjectOfType<AudioManager>();
     }
 
     private void Start()
     {
-        musicToggle.isOn = audioManager.GetMusicState();
-        sfxToggle.isOn = audioManager.GetSFXState();
+        musicToggle.isOn = AudioManager.Instance.GetMusicState();
+        sfxToggle.isOn = AudioManager.Instance.GetSFXState();
     }
 
     private void Update()
     {
-        sfxState = !audioManager.GetSFXState();
+        sfxState = !AudioManager.Instance.GetSFXState();
         musicToggle.GetComponent<AudioSource>().mute = sfxState;
         sfxToggle.GetComponent<AudioSource>().mute = sfxState;
+
+        musicToggle.onValueChanged.AddListener(
+            (bool value) =>
+            {
+                AudioManager.Instance.PlayMusic();
+                AudioManager.Instance.SetMusicState(value);
+            }
+        );
+        sfxToggle.onValueChanged.AddListener(
+            (bool value) =>
+            {
+                AudioManager.Instance.SetSFXState(value);
+            }
+        );
     }
 
     public void Close()

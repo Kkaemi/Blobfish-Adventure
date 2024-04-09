@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Title : MonoBehaviour
@@ -24,5 +25,10 @@ public class Title : MonoBehaviour
         sfxState = !audioManager.GetSFXState();
         startButton.GetComponent<AudioSource>().mute = sfxState;
         optionsButton.GetComponent<AudioSource>().mute = sfxState;
+    }
+
+    public void MoveLevelSelectScene()
+    {
+        SceneManager.LoadScene(1);
     }
 }
