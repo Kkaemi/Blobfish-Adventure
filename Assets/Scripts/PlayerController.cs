@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -14,6 +15,9 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField]
     private float maxSpeed = 3f;
+
+    [SerializeField]
+    private GameObject gameOverUI;
 
     private Rigidbody2D rgbd;
 
@@ -81,6 +85,8 @@ public class PlayerController : MonoBehaviour
         if (rgbd.IsTouchingLayers(LayerMask.GetMask("Enemy")))
         {
             isAlive = false;
+            gameOverUI.SetActive(true);
+            movement = Vector2.zero;
         }
     }
 }
