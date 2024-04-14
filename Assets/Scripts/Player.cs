@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour
+public class Player : MonoBehaviour
 {
     [SerializeField]
     private float movePower = 1f;
@@ -12,9 +12,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float maxSpeed = 3f;
 
-    [SerializeField]
-    private GameObject gameOverUI;
-
     private Rigidbody2D rgbd;
 
     private Vector2 movement;
@@ -24,11 +21,6 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         rgbd = GetComponent<Rigidbody2D>();
-    }
-
-    private void Update()
-    {
-        Die();
     }
 
     private void FixedUpdate()
@@ -76,13 +68,9 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void Die()
+    public void Die()
     {
-        if (rgbd.IsTouchingLayers(LayerMask.GetMask("Enemy")))
-        {
-            isAlive = false;
-            gameOverUI.SetActive(true);
-            movement = Vector2.zero;
-        }
+        isAlive = false;
+        movement = Vector2.zero;
     }
 }
