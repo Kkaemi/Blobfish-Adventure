@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CrashDetector : MonoBehaviour
 {
@@ -12,6 +13,9 @@ public class CrashDetector : MonoBehaviour
 
     [SerializeField]
     private GameObject gameOverUI;
+
+    [SerializeField]
+    private Button pauseButton;
 
     private AudioSource audioSource;
 
@@ -31,6 +35,8 @@ public class CrashDetector : MonoBehaviour
         if (other.gameObject.CompareTag("Enemy"))
         {
             audioSource.mute = !AudioManager.Instance.GetSFXState();
+            pauseButton.interactable = false;
+
             if (!audioSource.isPlaying && audioPlayFlag)
             {
                 audioPlayFlag = false;

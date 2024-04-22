@@ -4819,6 +4819,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 473330920}
     - target: {fileID: 286712391569626290, guid: cbe1153ab9658421e959393618bbfa9d, type: 3}
+      propertyPath: pauseButton
+      value: 
+      objectReference: {fileID: 794109784}
+    - target: {fileID: 286712391569626290, guid: cbe1153ab9658421e959393618bbfa9d, type: 3}
       propertyPath: gameOverSound
       value: 
       objectReference: {fileID: 8300000, guid: 74cfa9791754f4c09b96ff3b6a18c5c2, type: 3}
