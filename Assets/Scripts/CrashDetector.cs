@@ -8,6 +8,9 @@ public class CrashDetector : MonoBehaviour
     private AudioClip crashSound;
 
     [SerializeField]
+    private AudioClip gameOverSound;
+
+    [SerializeField]
     private GameObject gameOverUI;
 
     private AudioSource audioSource;
@@ -32,6 +35,7 @@ public class CrashDetector : MonoBehaviour
             {
                 audioPlayFlag = false;
                 audioSource.PlayOneShot(crashSound);
+                audioSource.PlayOneShot(gameOverSound);
             }
             player.Die();
             gameOverUI.SetActive(true);
