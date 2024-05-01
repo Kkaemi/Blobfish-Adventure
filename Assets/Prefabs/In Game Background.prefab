@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1771819379637664020}
   - component: {fileID: 7947646260222286254}
   - component: {fileID: 7176503788974946642}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bubble
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4839,7 +4839,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5204640482234917049}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ships
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4874,7 +4874,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4166359943220324270}
   - component: {fileID: 4097450621340443279}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: rocks_big_rock_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4958,7 +4958,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3986020053407111497}
   - component: {fileID: 719684766976666090}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: plant_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5042,7 +5042,7 @@ GameObject:
   m_Component:
   - component: {fileID: 805732831577120654}
   - component: {fileID: 5304069929931164244}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: rocks_small_rock_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5126,7 +5126,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4707913255080652384}
   - component: {fileID: 3681148597206588279}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bottoms
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5185,7 +5185,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 130, y: -7}
+  m_Offset: {x: 130, y: -7.5}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -5208,7 +5208,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8452398379665566486}
   - component: {fileID: 3952427552691008627}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: rocks_big_rock_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5292,7 +5292,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3320838077134129500}
   - component: {fileID: 5061455904907753287}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: background_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5376,7 +5376,7 @@ GameObject:
   m_Component:
   - component: {fileID: 541390911291199840}
   - component: {fileID: 4955343869450451728}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ship_light (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5460,7 +5460,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7151998743116946052}
   - component: {fileID: 1516903015350423382}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: plant_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5544,7 +5544,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2651620714480392044}
   - component: {fileID: 3277604494914370866}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: background_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5628,7 +5628,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7614097763141937268}
   - component: {fileID: 5664700005824136602}
-  m_Layer: 0
+  - component: {fileID: 3788131283966172258}
+  m_Layer: 6
   m_Name: In Game Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5668,6 +5669,56 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   plants: {fileID: 5695375003878659848}
   bubbles: {fileID: 4730325066433249452}
+--- !u!60 &3788131283966172258
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3285210781750851976}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 14.568964, y: 5.5142994}
+      - {x: -19.36681, y: 5.3723364}
+      - {x: -19.320532, y: -6.720303}
+      - {x: 279.88248, y: -6.7141004}
+      - {x: 279.46866, y: 5.571015}
+  m_UseDelaunayMesh: 0
 --- !u!1 &3947928334826897152
 GameObject:
   m_ObjectHideFlags: 0
@@ -5678,7 +5729,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3153966139484434468}
   - component: {fileID: 3024887407577334610}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: alga_big_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5762,7 +5813,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2499041445266315572}
   - component: {fileID: 4578059885104457522}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: rocks_small_rock_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5846,7 +5897,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6326244475227739922}
   - component: {fileID: 5231942800992500570}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: rocks_small_rock_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5929,7 +5980,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8205977101783623133}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bubbles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5963,7 +6014,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4589269570983310565}
   - component: {fileID: 6751256553772662005}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: plant_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6047,7 +6098,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6336403878076807886}
   - component: {fileID: 6318184013341816492}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ship_light (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6130,7 +6181,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2504184665068503984}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Plants
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6170,7 +6221,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3094609262910693184}
   - component: {fileID: 8664700416871611006}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: background_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6254,7 +6305,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6968978508473816497}
   - component: {fileID: 5941726125299885290}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: alga_small_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6338,7 +6389,7 @@ GameObject:
   m_Component:
   - component: {fileID: 178589818292517471}
   - component: {fileID: 1179153862459348658}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: alga_big_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6422,9 +6473,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1038451197905284374}
   - component: {fileID: 4798935362551197894}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Rocks
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6482,7 +6533,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 130, y: 7}
+  m_Offset: {x: 130, y: 6}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -6505,7 +6556,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3821227111322704750}
   - component: {fileID: 2346584247586697993}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ship_light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6590,7 +6641,7 @@ GameObject:
   - component: {fileID: 1513115277820642224}
   - component: {fileID: 8067255755025618054}
   - component: {fileID: 2252834489214293907}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bubble (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11419,7 +11470,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3504871519846435650}
   - component: {fileID: 2466863242792414904}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: rocks_small_rock_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11503,7 +11554,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5425187382599870168}
   - component: {fileID: 7695943737105364482}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: background_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11587,7 +11638,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2613002043211860000}
   - component: {fileID: 4084590031640957181}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: alga_small_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11671,7 +11722,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1628203203433160029}
   - component: {fileID: 8499426408722295424}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: plant_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}

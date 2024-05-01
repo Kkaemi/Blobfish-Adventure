@@ -22,4 +22,19 @@ public class GameManager : SingletonBehaviour<GameManager>
     {
         clearStageCount++;
     }
+
+    public void PauseGame()
+    {
+        Time.timeScale = 0f;
+    }
+
+    public void ResumeGame()
+    {
+        Time.timeScale = 1f;
+    }
+
+    public bool IsPaused()
+    {
+        return Time.timeScale == 0f;
+    }
 }
