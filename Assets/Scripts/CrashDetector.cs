@@ -17,22 +17,22 @@ public class CrashDetector : MonoBehaviour
     [SerializeField]
     private Button pauseButton;
 
-    private AudioSource audioSource;
-
     private Player player;
+
+    private AudioSource audioSource;
 
     private bool audioPlayFlag;
 
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        player = GetComponent<Player>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         audioPlayFlag = true;
     }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (!other.gameObject.CompareTag("Enemy"))
+        if (!other.gameObject.CompareTag("Player") || player.IsDead())
         {
             return;
         }

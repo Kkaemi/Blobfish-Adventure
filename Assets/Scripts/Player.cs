@@ -13,6 +13,11 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float maxSpeed = 3f;
 
+    [SerializeField]
+    private AudioClip jumpSound;
+
+    private AudioSource audioSource;
+
     private Rigidbody2D rgbd;
 
     private Vector2 movement;
@@ -22,6 +27,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         rgbd = GetComponent<Rigidbody2D>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void FixedUpdate()
@@ -63,8 +69,11 @@ public class Player : MonoBehaviour
             return;
         }
 
+        audioSource.mute = !AudioManager.Instance.GetSFXState();
+
         if (context.performed)
         {
+            audioSource.PlayOneShot(jumpSound);
             rgbd.velocity += Vector2.up * jumpPower;
         }
     }
