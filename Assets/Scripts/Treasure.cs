@@ -13,10 +13,13 @@ public class Treasure : MonoBehaviour
     [SerializeField]
     private GameObject successUI;
 
+    private AudioSource audioSource;
+
     private Vector2 vector2;
 
     private void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         vector2 = transform.position;
     }
 
@@ -34,6 +37,9 @@ public class Treasure : MonoBehaviour
             Player player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
             player.Die();
             // success audio play
+            audioSource.mute = !AudioManager.Instance.GetSFXState();
+            audioSource.Play();
+
             // success ui set active
             successUI.SetActive(true);
         }

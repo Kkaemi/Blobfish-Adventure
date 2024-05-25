@@ -32,19 +32,22 @@ public class CrashDetector : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Enemy"))
+        if (!other.gameObject.CompareTag("Enemy"))
         {
-            audioSource.mute = !AudioManager.Instance.GetSFXState();
-            pauseButton.interactable = false;
-
-            if (!audioSource.isPlaying && audioPlayFlag)
-            {
-                audioPlayFlag = false;
-                audioSource.PlayOneShot(crashSound);
-                audioSource.PlayOneShot(gameOverSound);
-            }
-            player.Die();
-            gameOverUI.SetActive(true);
+            return;
         }
+
+        audioSource.mute = !AudioManager.Instance.GetSFXState();
+        pauseButton.interactable = false;
+
+        if (!audioSource.isPlaying && audioPlayFlag)
+        {
+            audioPlayFlag = false;
+            audioSource.PlayOneShot(crashSound);
+            audioSource.PlayOneShot(gameOverSound);
+        }
+
+        player.Die();
+        gameOverUI.SetActive(true);
     }
 }
