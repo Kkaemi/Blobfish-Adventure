@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Treasure : MonoBehaviour
 {
@@ -12,6 +13,9 @@ public class Treasure : MonoBehaviour
 
     [SerializeField]
     private GameObject successUI;
+
+    [SerializeField]
+    private Button pauseButton;
 
     private AudioSource audioSource;
 
@@ -32,10 +36,20 @@ public class Treasure : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        Player player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+
+        if (player.IsDead())
+        {
+            return;
+        }
+
         if (other.gameObject.CompareTag("Player"))
         {
-            Player player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
             player.Die();
+
+            // change pause button status
+            pauseButton.interactable = false;
+
             // success audio play
             audioSource.mute = !AudioManager.Instance.GetSFXState();
             audioSource.Play();

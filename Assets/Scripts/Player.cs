@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -72,5 +73,10 @@ public class Player : MonoBehaviour
     {
         isAlive = false;
         movement = Vector2.zero;
+    }
+
+    public bool IsDead()
+    {
+        return !isAlive;
     }
 }
