@@ -3,67 +3,28 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class LevelSelect : MonoBehaviour
 {
-    [SerializeField]
-    private Button leftButton;
+    private AudioSource audioSource;
 
-    [SerializeField]
-    private Button rightButton;
-
-    [SerializeField]
-    private List<Button> levelButtons = new();
-
-    [SerializeField]
-    private Button GoToMainButton;
-
-    private readonly int pageSize = 10;
-
-    private int currentPage;
-    private bool isFirstPage;
-    private bool isLastPage;
+    private TextMeshProUGUI tmp;
 
     private void Start()
     {
-        int clearStageCount = GameManager.Instance.GetClearStageCount();
-        currentPage = clearStageCount / pageSize;
-        DrawLevels();
+        audioSource = GetComponent<AudioSource>();
     }
 
-    private void DrawLevels()
+    public void OnClickLevel()
     {
-        isFirstPage = currentPage == 0;
-        isLastPage = currentPage == ((GameManager.Instance.GetTotalLevelCount() / pageSize) - 1);
+        // LevelSelect.cs에서 DrawLevels 메소드가 실행되고 난 후의 변수를 사용해야 함
+        // 하지만 unity 게임 오브젝트끼리의 Start 메소드 순서가 보장이 안됨
+        // 그래서 해당 오브젝트를 클릭했을 때 변수를 불러오도록 구현
+        tmp = GetComponentInChildren<TextMeshProUGUI>();
 
-        leftButton.interactable = !isFirstPage;
-        rightButton.interactable = !isLastPage;
+        audioSource.mute = !AudioManager.Instance.GetSFXState();
+        audioSource.Play();
 
-        for (int i = 0; i < levelButtons.Count; i++)
-        {
-            TextMeshProUGUI buttonText = levelButtons[i].GetComponentInChildren<TextMeshProUGUI>();
-            buttonText.text = (currentPage * pageSize) + i + 1 + "";
-        }
-    }
-
-    public void MoveNextPage()
-    {
-        rightButton.GetComponent<AudioSource>().mute = !AudioManager.Instance.GetSFXState();
-        currentPage++;
-        DrawLevels();
-    }
-
-    public void MovePreviousPage()
-    {
-        leftButton.GetComponent<AudioSource>().mute = !AudioManager.Instance.GetSFXState();
-        currentPage--;
-        DrawLevels();
-    }
-
-    public void MoveMainTitleScene()
-    {
-        GoToMainButton.GetComponent<AudioSource>().mute = !AudioManager.Instance.GetSFXState();
-        SceneManager.LoadScene(0);
+        LoadingSceneManager.Instance.ChangeScene("Scenes/Level " + tmp.text);
     }
 }
