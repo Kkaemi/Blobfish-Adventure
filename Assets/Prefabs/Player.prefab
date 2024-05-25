@@ -14,11 +14,10 @@ GameObject:
   - component: {fileID: 1362570883597706370}
   - component: {fileID: 3713747344992324586}
   - component: {fileID: 7714026620610201432}
-  - component: {fileID: 286712391569626290}
   - component: {fileID: 2620612617297118959}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -167,6 +166,7 @@ MonoBehaviour:
   movePower: 7
   jumpPower: 30
   maxSpeed: 6
+  jumpSound: {fileID: 8300000, guid: d40c316d3f2ca4d30b6c10606b50126b, type: 3}
 --- !u!114 &7714026620610201432
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -277,20 +277,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &286712391569626290
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4013458186418527347}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cd8a41896f894a969042d07e8c14c22, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  crashSound: {fileID: 8300000, guid: 36845b811dc834b9f8bdfb87fcb412c9, type: 3}
-  gameOverUI: {fileID: 0}
 --- !u!82 &2620612617297118959
 AudioSource:
   m_ObjectHideFlags: 0
