@@ -77,3 +77,6 @@ crashlytics-build.properties
 Clirgo
 HQ PIXEL UI
 UI SFX Mega Pack
+
+# 구글 애드몹 앱 id 노출 문제로 ad manager는 제외
+AdManager.cs
