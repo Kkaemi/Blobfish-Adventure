@@ -24,16 +24,17 @@ public class AudioManager : SingletonBehaviour<AudioManager>
 
     private void Start()
     {
-        bool isLevelScene = SceneManager.GetActiveScene().name.StartsWith("Level");
-        if (isLevelScene)
-        {
-            audioSource.clip = audioClips[1];
-        }
-        else
-        {
-            audioSource.clip = audioClips[0];
-        }
+        SceneManager.sceneLoaded += ChangeBGMByScene;
+    }
+
+    private void OnEnable()
+    {
         PlayMusic();
+    }
+
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= ChangeBGMByScene;
     }
 
     public void PlayMusic()
@@ -66,5 +67,27 @@ public class AudioManager : SingletonBehaviour<AudioManager>
     public void SetSFXState(bool value)
     {
         isPlayingSFX = value;
+    }
+
+    public void ChangeBGMByScene(Scene scene, LoadSceneMode loadSceneMode)
+    {
+        AudioClip beforeClip = audioSource.clip;
+        bool isLevelScene = scene.name.StartsWith("Level");
+
+        if (isLevelScene)
+        {
+            audioSource.clip = audioClips[1];
+        }
+        else
+        {
+            audioSource.clip = audioClips[0];
+        }
+
+        if (beforeClip.Equals(audioSource.clip))
+        {
+            return;
+        }
+
+        PlayMusic();
     }
 }

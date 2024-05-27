@@ -5627,7 +5627,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7614097763141937268}
-  - component: {fileID: 5664700005824136602}
   - component: {fileID: 3788131283966172258}
   m_Layer: 6
   m_Name: In Game Background
@@ -5655,20 +5654,6 @@ Transform:
   - {fileID: 4707913255080652384}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5664700005824136602
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3285210781750851976}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24e7b5216d1f74a5897fe7ac862c7fdc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  plants: {fileID: 5695375003878659848}
-  bubbles: {fileID: 4730325066433249452}
 --- !u!60 &3788131283966172258
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -6473,11 +6458,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1038451197905284374}
   - component: {fileID: 4798935362551197894}
-  - component: {fileID: 2011078212020340608}
   - component: {fileID: 6479655962180861958}
   m_Layer: 6
   m_Name: Rocks
-  m_TagString: Enemy
+  m_TagString: Hazard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6548,22 +6532,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 300, y: 3}
   m_EdgeRadius: 0
---- !u!114 &2011078212020340608
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7102062849313683898}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cd8a41896f894a969042d07e8c14c22, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  crashSound: {fileID: 8300000, guid: 36845b811dc834b9f8bdfb87fcb412c9, type: 3}
-  gameOverSound: {fileID: 8300000, guid: 74cfa9791754f4c09b96ff3b6a18c5c2, type: 3}
-  gameOverUI: {fileID: 0}
-  pauseButton: {fileID: 0}
 --- !u!82 &6479655962180861958
 AudioSource:
   m_ObjectHideFlags: 0

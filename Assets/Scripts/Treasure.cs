@@ -15,10 +15,9 @@ public class Treasure : MonoBehaviour
     private GameObject successUI;
 
     [SerializeField]
-    private Button pauseButton;
+    private PlayerData playerData;
 
     private AudioSource audioSource;
-
     private Vector2 vector2;
 
     private void Start()
@@ -36,26 +35,20 @@ public class Treasure : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Player player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-
-        if (player.IsDead())
+        if (!other.gameObject.CompareTag("Player") || !playerData.IsAlive)
         {
             return;
         }
 
-        if (other.gameObject.CompareTag("Player"))
-        {
-            player.Die();
+        // 일시정지, 쉴드 버튼 비활성화 시켜야됨
+        // 플레이어 무브먼트 0 만들어야 됨
+        playerData.IsResponsive = false;
 
-            // change pause button status
-            pauseButton.interactable = false;
+        // success audio play
+        audioSource.mute = !AudioManager.Instance.GetSFXState();
+        audioSource.Play();
 
-            // success audio play
-            audioSource.mute = !AudioManager.Instance.GetSFXState();
-            audioSource.Play();
-
-            // success ui set active
-            successUI.SetActive(true);
-        }
+        // success ui set active
+        successUI.SetActive(true);
     }
 }

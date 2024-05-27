@@ -144,5 +144,5 @@ MonoBehaviour:
   audioClips:
   - {fileID: 8300000, guid: c30a352822a574482a0a92111946f1d5, type: 3}
   - {fileID: 8300000, guid: 25a8c5ca8e76a49bd8f92ee7ced56bf5, type: 3}
-  isPlayingMusic: 0
+  isPlayingMusic: 1
   isPlayingSFX: 1
