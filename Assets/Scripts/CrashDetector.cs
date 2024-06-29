@@ -15,39 +15,61 @@ public class CrashDetector : MonoBehaviour
     private GameObject gameOverUI;
 
     [SerializeField]
-    private Button pauseButton;
-
-    private Player player;
+    private PlayerData playerData;
 
     private AudioSource audioSource;
 
-    private bool audioPlayFlag;
-
-    private void Start()
+    private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-        audioPlayFlag = true;
+    }
+
+    private void OnEnable()
+    {
+        playerData.OnPlayerDie += ActiveGameOverUI;
+    }
+
+    private void OnDisable()
+    {
+        playerData.OnPlayerDie -= ActiveGameOverUI;
     }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (!other.gameObject.CompareTag("Player") || player.IsDead())
+        if (!IsValidCondition(other))
         {
             return;
         }
 
         audioSource.mute = !AudioManager.Instance.GetSFXState();
-        pauseButton.interactable = false;
 
-        if (!audioSource.isPlaying && audioPlayFlag)
+        audioSource.PlayOneShot(crashSound);
+        audioSource.PlayOneShot(gameOverSound);
+
+        playerData.IsAlive = false;
+    }
+
+    private bool IsValidCondition(Collision2D other)
+    {
+        switch (other.gameObject.tag)
         {
-            audioPlayFlag = false;
-            audioSource.PlayOneShot(crashSound);
-            audioSource.PlayOneShot(gameOverSound);
+            case "Hazard":
+            case "Enemy":
+                break;
+            default:
+                return false;
         }
 
-        player.Die();
+        if (!playerData.IsAlive || playerData.IsInvincibility || !playerData.IsResponsive)
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    private void ActiveGameOverUI(bool value)
+    {
         gameOverUI.SetActive(true);
     }
 }
