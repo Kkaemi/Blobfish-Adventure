@@ -8,44 +8,27 @@ using UnityEngine;
 
 public static class EncryptedPlayerPrefs
 {
-    public static void SetObject<T>(string key, T value, bool encryption = true)
-    {
-        string jsonValue = JsonUtility.ToJson(value);
-
-        string savingKey = encryption ? Encrypt(key) : key;
-        string savingValue = encryption ? Encrypt(jsonValue) : jsonValue;
-
-        PlayerPrefs.SetString(savingKey, savingValue);
-        PlayerPrefs.Save();
-    }
-
     public static void SetValue<T>(string key, T value, bool encryption = true)
+        where T : struct
     {
-        Debug.Log($"value is : {value} and type is {typeof(T)}");
-
         string inputValue = value.ToString();
-
-        Debug.Log($"input value is : {inputValue}");
 
         string savingKey = encryption ? Encrypt(key) : key;
         string savingValue = encryption ? Encrypt(inputValue) : inputValue;
 
-        Debug.Log($"saving key is : {savingKey}");
-
         PlayerPrefs.SetString(savingKey, savingValue);
         PlayerPrefs.Save();
     }
 
-    public static T GetObject<T>(
+    public static T GetValue<T>(
         string originalKey,
         T defaultValue = default,
         bool encryption = true
     )
+        where T : struct
     {
         string savedKey = encryption ? Encrypt(originalKey) : originalKey;
         string savedValue;
-
-        Debug.Log($"saved key is : {savedKey}");
 
         if (!PlayerPrefs.HasKey(savedKey))
         {
@@ -58,7 +41,7 @@ public static class EncryptedPlayerPrefs
         if (originalValue == "")
             return defaultValue;
 
-        return JsonUtility.FromJson<T>(originalValue);
+        return (T)Convert.ChangeType(originalValue, typeof(T));
     }
 
     public static bool HasKey(string key, bool encryption = true)
@@ -76,6 +59,7 @@ public static class EncryptedPlayerPrefs
     private static string Encrypt(string plainText)
     {
         using Aes aes256 = CreateAes();
+
         ICryptoTransform encryptor = aes256.CreateEncryptor();
         using MemoryStream memoryStream = new();
         using CryptoStream cryptoStream = new(memoryStream, encryptor, CryptoStreamMode.Write);
@@ -101,12 +85,19 @@ public static class EncryptedPlayerPrefs
     private static Aes CreateAes()
     {
         Aes aes = Aes.Create();
+
         aes.BlockSize = 128;
-        aes.IV = Convert.FromBase64String("");
-        aes.Key = Convert.FromBase64String("");
         aes.KeySize = 256;
         aes.Mode = CipherMode.CBC;
         aes.Padding = PaddingMode.PKCS7;
+
+        // 자세한 원인은 파악이 안되었지만
+        // AES 객체의 키 값을 다른 필드보다 먼저 초기화 해 줄 경우
+        // 다른 값들이 초기화 되면서 키 값이 계속 변경되는 문제가 있었음
+        // 따라서 키 값은 가장 마지막에 초기화 해줌
+        aes.IV = Convert.FromBase64String("");
+        aes.Key = Convert.FromBase64String("");
+
         return aes;
     }
 }
