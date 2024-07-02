@@ -11,15 +11,18 @@ public class AudioManager : SingletonBehaviour<AudioManager>
     private AudioClip[] audioClips;
 
     [SerializeField]
-    private bool isPlayingMusic = true;
+    private bool isPlayingMusic;
 
     [SerializeField]
-    private bool isPlayingSFX = true;
+    private bool isPlayingSFX;
 
     private new void Awake()
     {
         base.Awake();
         audioSource = GetComponent<AudioSource>();
+
+        isPlayingMusic = EncryptedPlayerPrefs.GetValue("musicState", true);
+        isPlayingSFX = EncryptedPlayerPrefs.GetValue("sfxState", true);
     }
 
     private void Start()
