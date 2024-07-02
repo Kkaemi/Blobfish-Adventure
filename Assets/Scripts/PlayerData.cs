@@ -65,8 +65,7 @@ public class PlayerData : ScriptableObject
         {
             shieldCount = value;
             OnShieldCountChange?.Invoke(value);
-            // PlayerPrefs.SetInt("shieldCount", value);
-            // PlayerPrefs.Save();
+            EncryptedPlayerPrefs.SetValue("shieldCount", value);
         }
     }
 }

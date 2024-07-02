@@ -21,23 +21,13 @@ public class Setting : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    private void Start()
+    private void OnEnable()
     {
-        musicToggle.isOn = AudioManager.Instance.GetMusicState();
-        sfxToggle.isOn = AudioManager.Instance.GetSFXState();
-    }
-
-    private void Update()
-    {
-        sfxState = !AudioManager.Instance.GetSFXState();
-        musicToggle.GetComponent<AudioSource>().mute = sfxState;
-        sfxToggle.GetComponent<AudioSource>().mute = sfxState;
-
         musicToggle.onValueChanged.AddListener(
             (bool value) =>
             {
-                AudioManager.Instance.PlayMusic();
                 AudioManager.Instance.SetMusicState(value);
+                AudioManager.Instance.PlayMusic();
             }
         );
         sfxToggle.onValueChanged.AddListener(
@@ -48,6 +38,20 @@ public class Setting : MonoBehaviour
         );
     }
 
+    private void Start()
+    {
+        musicToggle.isOn = AudioManager.Instance.GetMusicState();
+        sfxToggle.isOn = AudioManager.Instance.GetSFXState();
+    }
+
+    private void Update()
+    {
+        // 토글 버튼 누를 때 효과음 뮤트 on/off
+        sfxState = !AudioManager.Instance.GetSFXState();
+        musicToggle.GetComponent<AudioSource>().mute = sfxState;
+        sfxToggle.GetComponent<AudioSource>().mute = sfxState;
+    }
+
     public void Close()
     {
         StartCoroutine(CloseAfterDelay());
@@ -55,8 +59,16 @@ public class Setting : MonoBehaviour
 
     private IEnumerator CloseAfterDelay()
     {
+        bool musicState = AudioManager.Instance.GetMusicState();
+        bool sfxState = AudioManager.Instance.GetSFXState();
+
         animator.SetTrigger("Closing");
+
+        EncryptedPlayerPrefs.SetValue("musicState", musicState);
+        EncryptedPlayerPrefs.SetValue("sfxState", sfxState);
+
         yield return new WaitForSeconds(0.1f);
+
         gameObject.SetActive(false);
         animator.ResetTrigger("Closing");
     }
