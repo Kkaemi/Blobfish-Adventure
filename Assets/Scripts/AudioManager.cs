@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,92 +6,40 @@ using UnityEngine.SceneManagement;
 
 public class AudioManager : SingletonBehaviour<AudioManager>
 {
-    private AudioSource audioSource;
+    [SerializeField]
+    private GameObject bgmPlayer;
+    public BgmPlayer BgmPlayer => bgmPlayer.GetComponent<BgmPlayer>();
 
     [SerializeField]
-    private AudioClip[] audioClips;
-
-    [SerializeField]
-    private bool isPlayingMusic;
-
-    [SerializeField]
-    private bool isPlayingSFX;
+    private GameObject sfxPlayer;
+    public SfxPlayer SfxPlayer => sfxPlayer.GetComponent<SfxPlayer>();
 
     private new void Awake()
     {
         base.Awake();
-        audioSource = GetComponent<AudioSource>();
-
-        isPlayingMusic = EncryptedPlayerPrefs.GetValue("musicState", true);
-        isPlayingSFX = EncryptedPlayerPrefs.GetValue("sfxState", true);
-    }
-
-    private void Start()
-    {
-        SceneManager.sceneLoaded += ChangeBGMByScene;
     }
 
     private void OnEnable()
     {
-        PlayMusic();
+        SceneManager.sceneLoaded += ChangeBGMByScene;
     }
 
-    private void OnDestroy()
+    private void OnDisable()
     {
         SceneManager.sceneLoaded -= ChangeBGMByScene;
     }
 
-    public void PlayMusic()
-    {
-        if (isPlayingMusic)
-        {
-            audioSource.Play();
-        }
-        else
-        {
-            audioSource.Stop();
-        }
-    }
-
-    public bool GetMusicState()
-    {
-        return isPlayingMusic;
-    }
-
-    public bool GetSFXState()
-    {
-        return isPlayingSFX;
-    }
-
-    public void SetMusicState(bool value)
-    {
-        isPlayingMusic = value;
-    }
-
-    public void SetSFXState(bool value)
-    {
-        isPlayingSFX = value;
-    }
-
     public void ChangeBGMByScene(Scene scene, LoadSceneMode loadSceneMode)
     {
-        AudioClip beforeClip = audioSource.clip;
         bool isLevelScene = scene.name.StartsWith("Level");
 
         if (isLevelScene)
         {
-            audioSource.clip = audioClips[1];
+            BgmPlayer.PlayStageMusic();
         }
         else
         {
-            audioSource.clip = audioClips[0];
+            BgmPlayer.PlayTitleMusic();
         }
-
-        if (beforeClip.Equals(audioSource.clip))
-        {
-            return;
-        }
-
-        PlayMusic();
     }
 }

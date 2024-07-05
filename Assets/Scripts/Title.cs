@@ -12,19 +12,16 @@ public class Title : MonoBehaviour
     [SerializeField]
     private Button optionsButton;
 
-    private AudioManager audioManager;
-    private bool sfxState;
-
-    private void Start()
+    private void OnEnable()
     {
-        audioManager = FindObjectOfType<AudioManager>();
-    }
-
-    private void Update()
-    {
-        sfxState = !audioManager.GetSFXState();
-        startButton.GetComponent<AudioSource>().mute = sfxState;
-        optionsButton.GetComponent<AudioSource>().mute = sfxState;
+        startButton.onClick.AddListener(() =>
+        {
+            AudioManager.Instance.SfxPlayer.PlaySfx(SfxType.Click);
+        });
+        optionsButton.onClick.AddListener(() =>
+        {
+            AudioManager.Instance.SfxPlayer.PlaySfx(SfxType.Click);
+        });
     }
 
     public void MoveLevelSelectScene()

@@ -96,8 +96,7 @@ public class Player : MonoBehaviour
 
         if (context.performed)
         {
-            audioSource.mute = !AudioManager.Instance.GetSFXState();
-            audioSource.PlayOneShot(jumpSound);
+            AudioManager.Instance.SfxPlayer.PlaySfx(SfxType.Jump);
             rgbd.velocity = Vector2.up * jumpPower;
         }
     }

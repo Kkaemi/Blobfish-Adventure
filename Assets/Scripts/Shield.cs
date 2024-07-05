@@ -7,7 +7,6 @@ public class Shield : MonoBehaviour
     [SerializeField]
     private PlayerData playerData;
 
-    private AudioSource audioSource;
     private SpriteRenderer spriteRenderer;
     private Tween shieldTween;
 
@@ -18,7 +17,6 @@ public class Shield : MonoBehaviour
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        audioSource = GetComponent<AudioSource>();
     }
 
     private void OnEnable()
@@ -38,8 +36,7 @@ public class Shield : MonoBehaviour
         // 플레이어 무적상태 전환
         playerData.IsInvincibility = true;
 
-        audioSource.mute = !AudioManager.Instance.GetSFXState();
-        audioSource.Play();
+        AudioManager.Instance.SfxPlayer.PlaySfx(SfxType.Shield);
 
         // spriteRenderer의 원래 알파값
         float originalAlpha = spriteRenderer.color.a;

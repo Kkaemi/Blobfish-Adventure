@@ -9,16 +9,9 @@ public class ReplayButton : MonoBehaviour
     [SerializeField]
     private PlayerData playerData;
 
-    private AudioSource audioSource;
-
-    void Start()
-    {
-        audioSource = GetComponent<AudioSource>();
-    }
-
     public void RetryCurrentLevel()
     {
-        audioSource.mute = !AudioManager.Instance.GetSFXState();
+        AudioManager.Instance.SfxPlayer.PlaySfx(SfxType.Click);
 
         if (GameManager.Instance.IsPaused())
         {

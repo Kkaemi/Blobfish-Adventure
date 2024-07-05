@@ -10,12 +10,10 @@ public class PauseButton : MonoBehaviour
     private PlayerData playerData;
 
     private Button pauseButton;
-    private AudioSource audioSource;
 
     private void Awake()
     {
         pauseButton = GetComponent<Button>();
-        audioSource = GetComponent<AudioSource>();
     }
 
     private void OnEnable()
@@ -37,21 +35,15 @@ public class PauseButton : MonoBehaviour
 
     public void OnClickPause()
     {
-        CheckMute();
+        AudioManager.Instance.SfxPlayer.PlaySfx(SfxType.Click);
         pauseUI.SetActive(true);
         GameManager.Instance.PauseGame();
     }
 
     public void OnClickClose()
     {
-        CheckMute();
+        AudioManager.Instance.SfxPlayer.PlaySfx(SfxType.Click);
         pauseUI.SetActive(false);
         GameManager.Instance.ResumeGame();
-    }
-
-    private void CheckMute()
-    {
-        audioSource.mute = !AudioManager.Instance.GetSFXState();
-        audioSource.Play();
     }
 }

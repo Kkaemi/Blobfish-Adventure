@@ -37,8 +37,7 @@ public class WarningArea : MonoBehaviour
         }
 
         // 효과음 재생
-        audioSource.mute = !AudioManager.Instance.GetSFXState();
-        audioSource.Play();
+        AudioManager.Instance.SfxPlayer.PlaySfx(SfxType.Hazard);
 
         StartCoroutine(nameof(BlinkWarningArea));
     }

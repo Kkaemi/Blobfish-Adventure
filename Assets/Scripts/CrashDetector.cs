@@ -17,13 +17,6 @@ public class CrashDetector : MonoBehaviour
     [SerializeField]
     private PlayerData playerData;
 
-    private AudioSource audioSource;
-
-    private void Awake()
-    {
-        audioSource = GetComponent<AudioSource>();
-    }
-
     private void OnEnable()
     {
         playerData.OnPlayerDie += ActiveGameOverUI;
@@ -41,10 +34,8 @@ public class CrashDetector : MonoBehaviour
             return;
         }
 
-        audioSource.mute = !AudioManager.Instance.GetSFXState();
-
-        audioSource.PlayOneShot(crashSound);
-        audioSource.PlayOneShot(gameOverSound);
+        AudioManager.Instance.SfxPlayer.PlaySfx(SfxType.Crash);
+        AudioManager.Instance.SfxPlayer.PlaySfx(SfxType.Death);
 
         playerData.IsAlive = false;
     }

@@ -22,8 +22,7 @@ public class LevelSelect : MonoBehaviour
         // 그래서 해당 오브젝트를 클릭했을 때 변수를 불러오도록 구현
         tmp = GetComponentInChildren<TextMeshProUGUI>();
 
-        audioSource.mute = !AudioManager.Instance.GetSFXState();
-        audioSource.Play();
+        AudioManager.Instance.SfxPlayer.PlaySfx(SfxType.Click);
 
         LoadingSceneManager.Instance.ChangeScene("Scenes/Level " + tmp.text);
     }
