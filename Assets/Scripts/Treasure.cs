@@ -45,8 +45,7 @@ public class Treasure : MonoBehaviour
         playerData.IsResponsive = false;
 
         // success audio play
-        audioSource.mute = !AudioManager.Instance.GetSFXState();
-        audioSource.Play();
+        AudioManager.Instance.SfxPlayer.PlaySfx(SfxType.Success);
 
         // success ui set active
         successUI.SetActive(true);

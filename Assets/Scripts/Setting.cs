@@ -1,20 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Setting : MonoBehaviour
 {
     [SerializeField]
-    private Toggle musicToggle;
+    private Slider musicSlider;
 
     [SerializeField]
-    private Toggle sfxToggle;
+    private Slider sfxSlider;
 
     private Animator animator;
-
-    private bool sfxState;
 
     private void Awake()
     {
@@ -23,33 +22,26 @@ public class Setting : MonoBehaviour
 
     private void OnEnable()
     {
-        musicToggle.onValueChanged.AddListener(
-            (bool value) =>
-            {
-                AudioManager.Instance.SetMusicState(value);
-                AudioManager.Instance.PlayMusic();
-            }
-        );
-        sfxToggle.onValueChanged.AddListener(
-            (bool value) =>
-            {
-                AudioManager.Instance.SetSFXState(value);
-            }
-        );
+        AudioManager.Instance.BgmPlayer.OnVolumeChange += OnMusicVolumeChane;
+        AudioManager.Instance.SfxPlayer.OnVolumeChange += OnSfxVolumeChane;
     }
 
     private void Start()
     {
-        musicToggle.isOn = AudioManager.Instance.GetMusicState();
-        sfxToggle.isOn = AudioManager.Instance.GetSFXState();
+        musicSlider.value = AudioManager.Instance.BgmPlayer.BgmVolume;
+        sfxSlider.value = AudioManager.Instance.SfxPlayer.SfxVolume;
+    }
+
+    private void OnDisable()
+    {
+        AudioManager.Instance.BgmPlayer.OnVolumeChange -= OnMusicVolumeChane;
+        AudioManager.Instance.SfxPlayer.OnVolumeChange -= OnSfxVolumeChane;
     }
 
     private void Update()
     {
-        // 토글 버튼 누를 때 효과음 뮤트 on/off
-        sfxState = !AudioManager.Instance.GetSFXState();
-        musicToggle.GetComponent<AudioSource>().mute = sfxState;
-        sfxToggle.GetComponent<AudioSource>().mute = sfxState;
+        AudioManager.Instance.BgmPlayer.BgmVolume = musicSlider.value;
+        AudioManager.Instance.SfxPlayer.SfxVolume = sfxSlider.value;
     }
 
     public void Close()
@@ -59,17 +51,29 @@ public class Setting : MonoBehaviour
 
     private IEnumerator CloseAfterDelay()
     {
-        bool musicState = AudioManager.Instance.GetMusicState();
-        bool sfxState = AudioManager.Instance.GetSFXState();
+        AudioManager.Instance.SfxPlayer.PlaySfx(SfxType.Click);
+
+        float musicVolume = AudioManager.Instance.BgmPlayer.BgmVolume;
+        float sfxVolume = AudioManager.Instance.SfxPlayer.SfxVolume;
 
         animator.SetTrigger("Closing");
 
-        EncryptedPlayerPrefs.SetValue("musicState", musicState);
-        EncryptedPlayerPrefs.SetValue("sfxState", sfxState);
+        EncryptedPlayerPrefs.SetValue("musicVolume", musicVolume);
+        EncryptedPlayerPrefs.SetValue("sfxVolume", sfxVolume);
 
         yield return new WaitForSeconds(0.1f);
 
         gameObject.SetActive(false);
         animator.ResetTrigger("Closing");
+    }
+
+    private void OnMusicVolumeChane(float value)
+    {
+        musicSlider.value = value;
+    }
+
+    private void OnSfxVolumeChane(float value)
+    {
+        sfxSlider.value = value;
     }
 }

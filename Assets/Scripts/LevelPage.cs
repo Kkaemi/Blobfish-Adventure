@@ -49,21 +49,21 @@ public class LevelPage : MonoBehaviour
 
     public void MoveNextPage()
     {
-        rightButton.GetComponent<AudioSource>().mute = !AudioManager.Instance.GetSFXState();
+        AudioManager.Instance.SfxPlayer.PlaySfx(SfxType.Click);
         currentPage++;
         DrawLevels();
     }
 
     public void MovePreviousPage()
     {
-        leftButton.GetComponent<AudioSource>().mute = !AudioManager.Instance.GetSFXState();
+        AudioManager.Instance.SfxPlayer.PlaySfx(SfxType.Click);
         currentPage--;
         DrawLevels();
     }
 
     public void MoveMainTitleScene()
     {
-        GoToMainButton.GetComponent<AudioSource>().mute = !AudioManager.Instance.GetSFXState();
+        AudioManager.Instance.SfxPlayer.PlaySfx(SfxType.Click);
         SceneManager.LoadScene(0);
     }
 }
