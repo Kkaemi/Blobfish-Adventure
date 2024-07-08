@@ -17,12 +17,10 @@ public class Treasure : MonoBehaviour
     [SerializeField]
     private PlayerData playerData;
 
-    private AudioSource audioSource;
     private Vector2 vector2;
 
     private void Start()
     {
-        audioSource = GetComponent<AudioSource>();
         vector2 = transform.position;
     }
 

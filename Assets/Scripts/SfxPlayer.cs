@@ -8,6 +8,7 @@ using UnityEngine;
 public enum SfxType
 {
     Click,
+    Hover,
     Crash,
     Jump,
     Death,

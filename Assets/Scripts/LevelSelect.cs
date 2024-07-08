@@ -6,14 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class LevelSelect : MonoBehaviour
 {
-    private AudioSource audioSource;
-
     private TextMeshProUGUI tmp;
-
-    private void Start()
-    {
-        audioSource = GetComponent<AudioSource>();
-    }
 
     public void OnClickLevel()
     {
