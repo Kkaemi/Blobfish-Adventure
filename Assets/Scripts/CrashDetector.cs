@@ -6,12 +6,6 @@ using UnityEngine.UI;
 public class CrashDetector : MonoBehaviour
 {
     [SerializeField]
-    private AudioClip crashSound;
-
-    [SerializeField]
-    private AudioClip gameOverSound;
-
-    [SerializeField]
     private GameObject gameOverUI;
 
     [SerializeField]

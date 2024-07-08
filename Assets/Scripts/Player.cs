@@ -19,8 +19,6 @@ public class Player : MonoBehaviour
     [SerializeField]
     private PlayerData playerData;
 
-    private AudioSource audioSource;
-
     private Rigidbody2D rgbd;
 
     private Vector2 movement;
@@ -28,7 +26,6 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         rgbd = GetComponent<Rigidbody2D>();
-        audioSource = GetComponent<AudioSource>();
     }
 
     private void OnEnable()
