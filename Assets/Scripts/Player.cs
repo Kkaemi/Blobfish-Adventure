@@ -14,10 +14,10 @@ public class Player : MonoBehaviour
     private float maxSpeed = 6f;
 
     [SerializeField]
-    private AudioClip jumpSound;
+    private PlayerData playerData;
 
     [SerializeField]
-    private PlayerData playerData;
+    private GameObject shield;
 
     private Rigidbody2D rgbd;
 
@@ -32,21 +32,14 @@ public class Player : MonoBehaviour
     {
         playerData.OnPlayerDie += Die;
         playerData.OnPlayerUnresponsive += Die;
-        playerData.OnPlayerInvincibilityToggle += OnToggleInvincibility;
-    }
-
-    private void Start()
-    {
-        playerData.IsAlive = true;
-        playerData.IsInvincibility = false;
-        playerData.IsResponsive = true;
+        playerData.OnPlayerInvincibilityToggle += OnPlayerInvincibilityToggle;
     }
 
     private void OnDisable()
     {
         playerData.OnPlayerDie -= Die;
         playerData.OnPlayerUnresponsive -= Die;
-        playerData.OnPlayerInvincibilityToggle -= OnToggleInvincibility;
+        playerData.OnPlayerInvincibilityToggle -= OnPlayerInvincibilityToggle;
     }
 
     private void FixedUpdate()
@@ -114,9 +107,10 @@ public class Player : MonoBehaviour
         movement = Vector2.zero;
     }
 
-    private void OnToggleInvincibility(bool value)
+    private void OnPlayerInvincibilityToggle(bool value)
     {
         // 무적상태일 때 적이나 장애물과 부딪히면 플레이어가 기울지 않도록 막아줌
         rgbd.freezeRotation = !rgbd.freezeRotation;
+        shield.SetActive(value);
     }
 }
