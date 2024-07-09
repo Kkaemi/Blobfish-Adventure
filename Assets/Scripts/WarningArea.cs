@@ -15,13 +15,11 @@ public class WarningArea : MonoBehaviour
     private GameObject fallingRock;
 
     private SpriteRenderer spriteRenderer;
-    private AudioSource audioSource;
     private Tween spriteTween;
 
     private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        audioSource = GetComponent<AudioSource>();
     }
 
     private void OnDestroy()

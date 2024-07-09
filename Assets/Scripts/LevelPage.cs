@@ -49,14 +49,14 @@ public class LevelPage : MonoBehaviour
 
     public void MoveNextPage()
     {
-        AudioManager.Instance.SfxPlayer.PlaySfx(SfxType.Click);
+        AudioManager.Instance.SfxPlayer.PlaySfx(SfxType.Hover);
         currentPage++;
         DrawLevels();
     }
 
     public void MovePreviousPage()
     {
-        AudioManager.Instance.SfxPlayer.PlaySfx(SfxType.Click);
+        AudioManager.Instance.SfxPlayer.PlaySfx(SfxType.Hover);
         currentPage--;
         DrawLevels();
     }

@@ -56,16 +56,36 @@ public class PlayerData : ScriptableObject
     }
 
     // 쉴드 카운트
-    private int shieldCount = 3;
+    private int shieldCount;
     public Action<int> OnShieldCountChange;
     public int ShieldCount
     {
         get { return shieldCount; }
         set
         {
+            if (shieldCount == value)
+            {
+                return;
+            }
             shieldCount = value;
             OnShieldCountChange?.Invoke(value);
             EncryptedPlayerPrefs.SetValue("shieldCount", value);
+        }
+    }
+
+    // 현재 스테이지 클리어 여부
+    private bool isSuccess;
+    public Action<bool> OnStageClear;
+    public bool IsSuccess
+    {
+        get => isSuccess;
+        set
+        {
+            if (value)
+            {
+                OnStageClear?.Invoke(value);
+            }
+            isSuccess = value;
         }
     }
 }

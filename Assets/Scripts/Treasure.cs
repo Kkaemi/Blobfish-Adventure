@@ -12,25 +12,19 @@ public class Treasure : MonoBehaviour
     private float amplitude = 0.15f;
 
     [SerializeField]
-    private GameObject successUI;
-
-    [SerializeField]
     private PlayerData playerData;
 
-    private AudioSource audioSource;
     private Vector2 vector2;
 
     private void Start()
     {
-        audioSource = GetComponent<AudioSource>();
         vector2 = transform.position;
     }
 
     private void Update()
     {
-        float y = amplitude * Mathf.Sin(Time.time * speed);
-        vector2.y = y;
-        transform.position = vector2;
+        // 사인 그래프처럼 상하 움직임
+        MoveUpDownWithSin();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -40,14 +34,21 @@ public class Treasure : MonoBehaviour
             return;
         }
 
-        // 일시정지, 쉴드 버튼 비활성화 시켜야됨
-        // 플레이어 무브먼트 0 만들어야 됨
+        // 일시정지 & 쉴드 버튼 비활성화
+        // 플레이어 무브먼트 0 (움직임 비활성화)
         playerData.IsResponsive = false;
 
         // success audio play
         AudioManager.Instance.SfxPlayer.PlaySfx(SfxType.Success);
 
         // success ui set active
-        successUI.SetActive(true);
+        playerData.IsSuccess = true;
+    }
+
+    private void MoveUpDownWithSin()
+    {
+        float y = amplitude * Mathf.Sin(Time.time * speed);
+        vector2.y = y;
+        transform.position = vector2;
     }
 }
