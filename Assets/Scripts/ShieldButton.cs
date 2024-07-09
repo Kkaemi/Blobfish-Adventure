@@ -8,9 +8,6 @@ public class ShieldButton : MonoBehaviour
     [SerializeField]
     private PlayerData playerData;
 
-    [SerializeField]
-    private GameObject shield;
-
     private Button shieldButton;
 
     private void Awake()
@@ -22,12 +19,14 @@ public class ShieldButton : MonoBehaviour
     {
         playerData.OnPlayerDie += OnPlayerDie;
         playerData.OnPlayerUnresponsive += OnPlayerDie;
+        playerData.OnPlayerInvincibilityToggle += OnPlayerInvincibilityToggle;
     }
 
     private void OnDisable()
     {
         playerData.OnPlayerDie -= OnPlayerDie;
         playerData.OnPlayerUnresponsive -= OnPlayerDie;
+        playerData.OnPlayerInvincibilityToggle -= OnPlayerInvincibilityToggle;
     }
 
     private void OnPlayerDie(bool value)
@@ -35,20 +34,19 @@ public class ShieldButton : MonoBehaviour
         shieldButton.interactable = false;
     }
 
+    private void OnPlayerInvincibilityToggle(bool value)
+    {
+        shieldButton.interactable = !value;
+    }
+
     public void OnShieldButtonClick()
     {
-        // 중복 클릭 방지
-        if (shield.activeSelf)
-        {
-            return;
-        }
-
         if (playerData.ShieldCount == 0)
         {
             AdManager.Instance.ShowRewardedAd();
             return;
         }
 
-        shield.SetActive(true);
+        playerData.IsInvincibility = true;
     }
 }

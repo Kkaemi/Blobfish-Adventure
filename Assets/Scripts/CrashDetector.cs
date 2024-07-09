@@ -6,20 +6,7 @@ using UnityEngine.UI;
 public class CrashDetector : MonoBehaviour
 {
     [SerializeField]
-    private GameObject gameOverUI;
-
-    [SerializeField]
     private PlayerData playerData;
-
-    private void OnEnable()
-    {
-        playerData.OnPlayerDie += ActiveGameOverUI;
-    }
-
-    private void OnDisable()
-    {
-        playerData.OnPlayerDie -= ActiveGameOverUI;
-    }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
@@ -29,7 +16,6 @@ public class CrashDetector : MonoBehaviour
         }
 
         AudioManager.Instance.SfxPlayer.PlaySfx(SfxType.Crash);
-        AudioManager.Instance.SfxPlayer.PlaySfx(SfxType.Death);
 
         playerData.IsAlive = false;
     }
@@ -51,10 +37,5 @@ public class CrashDetector : MonoBehaviour
         }
 
         return true;
-    }
-
-    private void ActiveGameOverUI(bool value)
-    {
-        gameOverUI.SetActive(true);
     }
 }

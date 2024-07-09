@@ -10,7 +10,7 @@ public class ShieldView : MonoBehaviour
 
     private TextMeshProUGUI textMeshProUGUI;
 
-    private void Start()
+    private void Awake()
     {
         textMeshProUGUI = GetComponent<TextMeshProUGUI>();
         UpdateShieldCount(playerData.ShieldCount);
