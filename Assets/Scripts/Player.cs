@@ -110,7 +110,7 @@ public class Player : MonoBehaviour
     private void OnPlayerInvincibilityToggle(bool value)
     {
         // 무적상태일 때 적이나 장애물과 부딪히면 플레이어가 기울지 않도록 막아줌
-        rgbd.freezeRotation = !rgbd.freezeRotation;
+        rgbd.freezeRotation = value;
         shield.SetActive(value);
     }
 }
