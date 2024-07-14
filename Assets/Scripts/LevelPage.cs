@@ -21,36 +21,66 @@ public class LevelPage : MonoBehaviour
 
     private readonly int pageSize = 10;
 
+    // 0부터 시작
     private int currentPage;
-    private bool isFirstPage;
-    private bool isLastPage;
 
-    private void Start()
+    private void Awake()
     {
-        int clearStageCount = GameManager.Instance.GetClearStageCount();
-        currentPage = clearStageCount / pageSize;
+        GetCurrentPage();
+        SetPageMoveButtonState();
         DrawLevels();
     }
 
+    // 10단위로만 버튼 세팅
+    // 예) 총 스테이지 수 가 18일 경우
+    // 총 페이지 수 1로 설정 1 ~ 10까지만 노출 11 ~ 18은 보이지 않고 페이지도 이동 안됨
     private void DrawLevels()
     {
-        isFirstPage = currentPage == 0;
-        isLastPage = currentPage == ((GameManager.Instance.GetTotalLevelCount() / pageSize) - 1);
-
-        leftButton.interactable = !isFirstPage;
-        rightButton.interactable = !isLastPage;
+        int clearStage = GameManager.Instance.ClearStageCount;
 
         for (int i = 0; i < levelButtons.Count; i++)
         {
-            TextMeshProUGUI buttonText = levelButtons[i].GetComponentInChildren<TextMeshProUGUI>();
-            buttonText.text = (currentPage * pageSize) + i + 1 + "";
+            Button levelButton = levelButtons[i];
+            int currentLevel = (currentPage * pageSize) + i + 1;
+
+            bool isCleared = currentLevel <= clearStage;
+            bool isLockedLevel = currentLevel > clearStage + 1;
+
+            levelButton.GetComponent<Image>().color = isCleared ? Color.green : Color.white;
+            levelButton.interactable = !isLockedLevel;
+
+            TextMeshProUGUI buttonText = levelButton.GetComponentInChildren<TextMeshProUGUI>();
+            buttonText.text = currentLevel.ToString();
         }
+    }
+
+    // 플레이하던 스테이지 페이지부터 보여줌
+    // 예) 전에 11스테이지를 클리어 했다면 1페이지부터 보여줌
+    private void GetCurrentPage()
+    {
+        int maxPage = GameManager.Instance.TotalLevelCount / pageSize - 1;
+        currentPage = GameManager.Instance.ClearStageCount / pageSize;
+
+        if (currentPage > maxPage)
+        {
+            currentPage--;
+        }
+    }
+
+    private void SetPageMoveButtonState()
+    {
+        bool isFirstPage = currentPage == 0;
+        bool isLastPage = currentPage == ((GameManager.Instance.TotalLevelCount / pageSize) - 1);
+
+        leftButton.interactable = !isFirstPage;
+        rightButton.interactable = !isLastPage;
     }
 
     public void MoveNextPage()
     {
         AudioManager.Instance.SfxPlayer.PlaySfx(SfxType.Hover);
         currentPage++;
+        SetPageMoveButtonState();
         DrawLevels();
     }
 
@@ -58,6 +88,7 @@ public class LevelPage : MonoBehaviour
     {
         AudioManager.Instance.SfxPlayer.PlaySfx(SfxType.Hover);
         currentPage--;
+        SetPageMoveButtonState();
         DrawLevels();
     }
 

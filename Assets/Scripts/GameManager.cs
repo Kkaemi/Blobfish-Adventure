@@ -9,9 +9,19 @@ public class GameManager : SingletonBehaviour<GameManager>
     [SerializeField]
     private PlayerData playerData;
 
+    // 10단위로만 설정해야 함
+    // LevelPage.cs에 보충설명 있음
     private readonly int totalLevelCount = 20;
+    public int TotalLevelCount
+    {
+        get => totalLevelCount;
+    }
 
     private int clearStageCount = 0;
+    public int ClearStageCount
+    {
+        get => clearStageCount;
+    }
 
     private new void Awake()
     {
@@ -43,16 +53,6 @@ public class GameManager : SingletonBehaviour<GameManager>
             playerData.IsInvincibility = false;
             playerData.IsResponsive = true;
         }
-    }
-
-    public int GetTotalLevelCount()
-    {
-        return totalLevelCount;
-    }
-
-    public int GetClearStageCount()
-    {
-        return clearStageCount;
     }
 
     public void UpdateClearCount()
