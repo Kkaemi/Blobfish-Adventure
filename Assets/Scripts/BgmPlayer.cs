@@ -33,7 +33,7 @@ public class BgmPlayer : MonoBehaviour
 
     private void Start()
     {
-        audioSource.volume = EncryptedPlayerPrefs.GetValue<float>("musicVolume");
+        audioSource.volume = EncryptedPlayerPrefs.GetValue("musicVolume", 0.5f);
     }
 
     public void PlayTitleMusic()
