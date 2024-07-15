@@ -60,7 +60,7 @@ public class SfxPlayer : MonoBehaviour
 
     private void Start()
     {
-        audioSource.volume = EncryptedPlayerPrefs.GetValue<float>("sfxVolume");
+        audioSource.volume = EncryptedPlayerPrefs.GetValue("sfxVolume", 0.5f);
     }
 
     public void PlaySfx(SfxType sfxType)

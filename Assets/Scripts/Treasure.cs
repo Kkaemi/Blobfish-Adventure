@@ -43,6 +43,9 @@ public class Treasure : MonoBehaviour
 
         // success ui set active
         playerData.IsSuccess = true;
+
+        // 클리어 스테이지 카운트 증가
+        GameManager.Instance.IncrementClearedStages();
     }
 
     private void MoveUpDownWithSin()
