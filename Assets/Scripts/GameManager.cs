@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -60,6 +61,12 @@ public class GameManager : SingletonBehaviour<GameManager>
 
     public void IncrementClearedStages()
     {
+        int currentLevel = SceneManager.GetActiveScene().name.Last() - '0';
+        if (currentLevel <= clearedStages)
+        {
+            return;
+        }
+
         clearedStages++;
         EncryptedPlayerPrefs.SetValue("clearedStages", clearedStages);
     }
