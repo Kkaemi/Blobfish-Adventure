@@ -24,7 +24,7 @@ public class LevelPage : MonoBehaviour
     // 0부터 시작
     private int currentPage;
 
-    private void Awake()
+    private void Start()
     {
         GetCurrentPage();
         SetPageMoveButtonState();
@@ -36,7 +36,7 @@ public class LevelPage : MonoBehaviour
     // 총 페이지 수 1로 설정 1 ~ 10까지만 노출 11 ~ 18은 보이지 않고 페이지도 이동 안됨
     private void DrawLevels()
     {
-        int clearStage = GameManager.Instance.ClearStageCount;
+        int clearStage = GameManager.Instance.ClearedStages;
 
         for (int i = 0; i < levelButtons.Count; i++)
         {
@@ -59,7 +59,7 @@ public class LevelPage : MonoBehaviour
     private void GetCurrentPage()
     {
         int maxPage = GameManager.Instance.TotalLevelCount / pageSize - 1;
-        currentPage = GameManager.Instance.ClearStageCount / pageSize;
+        currentPage = GameManager.Instance.ClearedStages / pageSize;
 
         if (currentPage > maxPage)
         {
